@@ -17,15 +17,4 @@ public class Book
 
     [BsonElement("detail")]
     public string Detail { get; set; } = null!;
-    [BsonElement("totalNumber")]
-    public int TotalNumer { get; set; } = 0;
-    [BsonElement("price")]
-    public decimal Price { get; set; }
-    [BsonElement("DateTime")]
-    public DateTime DateTime { get; set; }
-    [BsonElement("listBook")]
-    public List<Book> ListBook { get; set; } = new();
-
-
-
 }

@@ -17,12 +17,7 @@ public class BookDto
     [Required(ErrorMessage = "Detail không được bỏ trống")]
     [MinLength(3, ErrorMessage = "Detail phải có ít nhất 3 ký tự")]
     public string Detail { get; set; } = string.Empty;
-
-    public decimal Price { get; set; }
-    public DateTime DateTime { get; set; }
-
-    public List<Book> ListBook { get; set; } = new();
-   
+  
         
     
 }
