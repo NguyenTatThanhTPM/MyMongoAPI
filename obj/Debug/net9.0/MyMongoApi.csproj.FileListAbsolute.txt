@@ -39,3 +39,5 @@ C:\Users\Thanh TPM\MyMongoApi\obj\Debug\net9.0\refint\MyMongoApi.dll
 C:\Users\Thanh TPM\MyMongoApi\obj\Debug\net9.0\MyMongoApi.pdb
 C:\Users\Thanh TPM\MyMongoApi\obj\Debug\net9.0\MyMongoApi.genruntimeconfig.cache
 C:\Users\Thanh TPM\MyMongoApi\obj\Debug\net9.0\ref\MyMongoApi.dll
+C:\Users\Thanh TPM\MyMongoApi\bin\Debug\net9.0\appsettings.Local.json
+C:\Users\Thanh TPM\MyMongoApi\obj\Debug\net9.0\MyMongoApi.sourcelink.json

@@ -1,5 +1,7 @@
 using MyMongoApi.Models;
 using MyMongoApi.Services;
+using MongoDB.Driver;
+using Microsoft.Extensions.Options;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,9 +10,22 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddJsonFile("appsettings.Local.json", optional: true, reloadOnChange: true) // file key riêng
+    .AddEnvironmentVariables(); // ưu tiên biến môi trường nếu có
 
+// Bind MongoDBSettings từ config
 builder.Services.Configure<MongoDBSettings>(
     builder.Configuration.GetSection("MongoDBSettings"));
+
+// Đăng ký MongoClient dùng IOptions<MongoDBSettings>
+builder.Services.AddSingleton<IMongoClient>(sp =>
+{
+    var settings = sp.GetRequiredService<IOptions<MongoDBSettings>>().Value;
+    return new MongoClient(settings.ConnectionString);
+});
 
 builder.Services.AddSingleton<BookService>();
 var app = builder.Build();
