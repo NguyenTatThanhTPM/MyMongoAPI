@@ -31,18 +31,20 @@ builder.Services.AddSingleton<BookService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+bool enableSwagger = app.Environment.IsDevelopment() ||
+                     builder.Configuration.GetValue<bool>("ENABLE_SWAGGER");
+if (enableSwagger)
 {
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    });
+}
+    // app.UseHttpsRedirection();
     app.MapOpenApi();
     app.MapControllers();
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-else
-{
 
-   // app.UseHttpsRedirection();
-}
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
